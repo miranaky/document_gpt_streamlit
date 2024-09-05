@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chat_models import ChatOpenAI
@@ -9,6 +11,12 @@ from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 from langchain.storage import LocalFileStore
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
+
+folders = ["./.cache", "./.cache/files", "./.cache/embedded_files"]
+for folder in folders:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
 
 st.set_page_config(page_title="DocumentGPT", page_icon="📄")
 
